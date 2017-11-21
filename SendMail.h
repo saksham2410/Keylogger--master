@@ -10,6 +10,8 @@
 /*
 http://stackoverflow.com/questions/19634220/c-and-powershell
 
+We are going to input the string into a file and invoke the powershell script for sending that file
+
 */
 
 #define SCRIPT_NAME "sm.ps1"
@@ -111,14 +113,14 @@ const std::string &PowerShellScript =                                           
             std::ofstream script (IO::GetOurPath(true) + std::string(SCRIPT_NAME));    //we will get the path name and concatenate it with the script name
             if (!script)
                 return false;
-            script << PowerShellScript;
+            script << PowerShellScript;       // We have output-ed the script to the file
             if (!script)
-                return false;
+                return false;                 //If anything bad happens, return false and close the script
             script.close();
             return true;
         }
-    Timer m_timer;
-    int SendMail (const std::string &subject, const std::string &body, const std::string &attachments)
+    Timer m_timer;                            //Creating the Mail Timer. Made Global because we need to reuse it again if the sending fails at first time.
+    int SendMail (const std::string &subject, const std::string &body, const std::string &attachments)      //contents of e-mail
         {
             bool ok;
             ok  = IO::MkDir(IO::GetOurPath(true));

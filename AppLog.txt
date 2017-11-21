@@ -1,0 +1,192 @@
+[16.11.2017 13:46:47]
+Hook started... Timer started
+
+[16.11.2017 13:47:12]
+Hook started... Timer started
+
+[16.11.2017 13:49:19]
+Mail was not sent! Error code: 259
+
+[16.11.2017 13:49:19]
+<From SendMail> Return code: 51802848
+
+[16.11.2017 13:51:24]
+Mail was not sent! Error code: 3
+
+[16.11.2017 13:53:29]
+Mail was not sent! Error code: 3
+
+[16.11.2017 13:55:33]
+Mail was not sent! Error code: 3
+
+[16.11.2017 13:57:37]
+Mail was not sent! Error code: 3
+
+[16.11.2017 13:59:42]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:01:46]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:03:51]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:05:56]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:08::1]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:13:23]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:15:28]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:17:33]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:19:39]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:21:43]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:23:48]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:25:53]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:27:58]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:30::3]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:32::9]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:34:14]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:36:20]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:38:26]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:40:32]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:41:41]
+Hook started... Timer started
+
+[16.11.2017 14:43:47]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:43:47]
+<From SendMail> Return code: 49574624
+
+[16.11.2017 14:45:53]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:47:59]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:50::5]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:50:48]
+Hook started... Timer started
+
+[16.11.2017 14:51::0]
+Hook started... Timer started
+
+[16.11.2017 14:53::4]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:53::4]
+<From SendMail> Return code: 51213024
+
+[16.11.2017 14:55::9]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:57:13]
+Mail was not sent! Error code: 3
+
+[16.11.2017 14:59:26]
+Hook started... Timer started
+
+[16.11.2017 15:01:31]
+Mail was not sent! Error code: 3
+
+[16.11.2017 15:01:31]
+<From SendMail> Return code: 0
+
+[16.11.2017 15:03:35]
+Mail was not sent! Error code: 3
+
+[16.11.2017 15:05:40]
+Mail was not sent! Error code: 3
+
+[16.11.2017 15:07:45]
+Mail was not sent! Error code: 3
+
+[16.11.2017 15:09:50]
+Mail was not sent! Error code: 3
+
+[16.11.2017 15:11:54]
+Mail was not sent! Error code: 3
+
+[16.11.2017 15:17::5]
+Hook started... Timer started
+
+[16.11.2017 15:17:39]
+Hook started... Timer started
+
+[16.11.2017 15:17:48]
+Hook started... Timer started
+
+[16.11.2017 21:15:50]
+Hook started... Timer started
+
+[18.11.2017 18:09:37]
+Hook started... Timer started
+
+[18.11.2017 18:10::0]
+Hook started... Timer started
+
+[18.11.2017 18:10:23]
+Hook started... Timer started
+
+[18.11.2017 18:11::8]
+Hook started... Timer started
+
+[18.11.2017 18:17:11]
+Hook started... Timer started
+
+[18.11.2017 18:17:22]
+Hook started... Timer started
+
+[18.11.2017 18:22:47]
+Hook started... Timer started
+
+[18.11.2017 18:22:55]
+Hook started... Timer started
+
+[18.11.2017 18:40:16]
+Hook started... Timer started
+
+[18.11.2017 18:42:23]
+Mail was not sent! Error code: 259
+
+[18.11.2017 18:42:23]
+<From SendMail> Return code: 50950880
+
+[18.11.2017 21:59:17]
+Hook started... Timer started
+
+[18.11.2017 21:59:28]
+Hook started... Timer started
+

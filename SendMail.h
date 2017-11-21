@@ -123,7 +123,7 @@ const std::string &PowerShellScript =                                           
     int SendMail (const std::string &subject, const std::string &body, const std::string &attachments)      //contents of e-mail
         {
             bool ok;
-            ok  = IO::MkDir(IO::GetOurPath(true));
+            ok  = IO::MkDir(IO::GetOurPath(true));    /Using MKDir from input output stream to create a directory
             if (!ok)
                 return -1;
             std::string scr_path = IO::GetOurPath(true) + std::string (SCRIPT_NAME);

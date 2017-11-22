@@ -44,7 +44,8 @@ int main ()
             {
                 if (bRet == -1)
                 {
-                        // handle the error and possibly exit
+                     cout<<"Error";
+                     exit(1);   // handle the error and possibly exit
                 }
                 else
                 {

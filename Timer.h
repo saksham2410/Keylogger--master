@@ -79,7 +79,7 @@ public:
     Timer(const function<void(void)> &f,const unsigned long &i,const long repeat = Timer::Infinite)           //This will have more parameters
 
       {
-          funct (f);
+          funct=f;
           interval=chrono::milliseconds(i);
           CallNumber = repeat;
       }

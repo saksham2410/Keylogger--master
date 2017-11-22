@@ -3,7 +3,7 @@
 
 #include <thread>           //C++ includes built-in support for threads, mutual exclusion, condition variables, and futures. Multithreading Purpose.
 #include <chrono>           //Used for very precise Time Measurements
-
+using namespace std;
 /*
 Multiple threads can run simultaneously. This is important because we want to send our mail simultaneously while recording Keystrokes.
 Like, in the main function, the GetMessage was out main thread.
@@ -12,9 +12,9 @@ Like, in the main function, the GetMessage was out main thread.
 class Timer
     {
 
+     //Private members
 
-
-    std::thread Thread;         //Creates a variable thread from the library thread for asynchronous code execution without blocking the main thread.
+    thread Thread;         //Creates a variable thread from the library thread for asynchronous code execution without blocking the main thread.
 
     bool Alive = false;         //Indicates State of the timer. If it is running or not
 
@@ -23,22 +23,32 @@ class Timer
 
     long repeat_count = -1L;    //Count the number of times a certain function has already been called
 
-    std::chrono::milliseconds interval = std::chrono::milliseconds(0);  //This will represent the interval between function calls
+    chrono::milliseconds interval = chrono::milliseconds(0);  //This will represent the interval between function calls
 
-    std::function<void(void)> funct = nullptr;   //doesn't point to any function, no return type and no inputs
+    function<void(void)> funct = nullptr;   //doesn't point to any function, no return type and no inputs
+    //This is a new concept in C++11. function is a type that can store functions, similar to pointer to a function.
+    //In the case the function funct represents a function with no arguments or return type, and currently pointing to null
+    //funct is the function thread will be running.
 
     void SleepAndRun ()
         {
 
 
 
-        std::this_thread::sleep_for(interval);        //sleep_for will block the thread for a certain time
+        this_thread::sleep_for(interval);
+
+        //sleep_for will block the thread for a certain time
+        //this_thread indicates the current thread which created the timer object.
+        //above statement will pause the execution of thread for given interval
+
         if (Alive)
             Function ()();                            //If the timer is running, call the function, initially bool was set to 0
         }                                             //Two parenthesis because first parenthesis will call the function and second parenthesis will call the
                                                       //function that this function calls.
-    void ThreadFunc ()                                //This will be the function that is passed to the thread
-        {
+
+
+    void ThreadFunc ()
+        {                                             //If the number of times the function has to be called is infinite, we will keep calling the function till the thread is alive
 
 
         if (CallNumber == Infinite)
@@ -52,21 +62,30 @@ class Timer
                 SleepAndRun ();                       //A function defined above
         }
 
+//Public members
+
 
 public:
     static const long Infinite = -1L;                // We will use it state that a function will be called infinite amount of times so the timer would work until
                                                      // we stop it in a manual fashion. It is static so that we can use it without creating an instance
 
-    Timer () {}                                      //Empty constructor so that we can create as a global variable
+    Timer () {}                                      //Empty constructor so that we can create as a global variable //default constructor
 
-    Timer(const std::function<void(void)> &f) : funct (f) {}   //This constructor will accept a pointer to a function that we will call. We will initialize the function
+    Timer(const function<void(void)> &f) : funct (f) {}   //This constructor will accept a pointer to a function that we will call. We will initialize the function
                                                                //object to f
-    Timer(const std::function<void(void)> &f,                  //This will have more parameters
-          const unsigned long &i,
-          const long repeat = Timer::Infinite) : funct (f),
-                                                 interval (std::chrono::milliseconds(i)), CallNumber (repeat) {}
+                                                               //simply a constructor that takes a function as parameter
 
 
+    Timer(const function<void(void)> &f,const unsigned long &i,const long repeat = Timer::Infinite)           //This will have more parameters
+
+      {
+          funct (f);
+          interval=chrono::milliseconds(i);
+          CallNumber = repeat;
+      }
+
+     //This will start the execution of the thread.
+     //Parameter indicates whether thread runs asynchronously or not.
 
     void Start (bool Async = true)                     //For starting the timer
         {
@@ -74,29 +93,46 @@ public:
         if (IsAlive ())
             return;                                    //If it's already running, just return we don't have to do anything
 
+
+                                                       //initialize variables at starting of thread.
         Alive = true;                                  //Set's alive as true
 
-        repeat_count = CallNumber;                     //Set's the value of repeat_count to CallNumber
 
-        if (Async)
-            Thread = std::thread (ThreadFunc, this);   //Thread is our variable. ThreadFunc will be executed and this is the pointer to our class
+        repeat_count = CallNumber;                     //Sets the value of repeat_count to CallNumber
+
+
+        if (Async)                                //If async, we need to create a new thread for the function using 'this' Timer object
+                                                  //execution of this thread is independent of main thread and may be done simultaneously.
+            Thread = thread (ThreadFunc, this);   //Thread is our variable. ThreadFunc will be executed and this is the pointer to timer object
+
+                                                  //if it is sync, we need to block the main thread and first complete this thread.
+                                                  //execution of main thread depends on this thread so we block it till this thread is done.
         else
             this->ThreadFunc ();
         }
 
-    void Stop ()                                       //To stop the timer
+    void Stop ()                                       //To stop the execution of thread.
         {
 
         Alive = false;
 
 
-        Thread.join ();                               //No concurrent execution on the one main thread.
+        Thread.join ();                                 //No concurrent execution on the one main thread.
+                                                        //Thread.join() reconnects the current thread with main thread.
+                                                        //current thread was created as a branch of main thread.
+                                                        //so it should be rejoined when execution of this thread completed.
+
+
         }
-    void SetFunction (const std::function<void (void)> &f)    //used to set the function that will be executed.
+
+    void SetFunction (const function<void (void)> &f)    //used to set the function that will be executed.
         {
         funct = f;
         }
+
+
     bool IsAlive () const {return Alive;}             //knows whether the times is alive or not
+
     void RepeatCount (const long r)                   //it sets the number of repeatances
         {
 
@@ -108,19 +144,20 @@ public:
     long GetLeftCount () const {return repeat_count;}        //How many iterations are left. For iterations.
 
     long RepeatCount () const {return CallNumber;}          //Fetch us the repeat_count. Total number of repeatances. For that we have set. Doesn't change
-    void SetInterval (const unsigned long &i)               //Receives a parameter and based on that parameter it just sets the interval
+
+    void SetInterval (const unsigned long &i)               //set function for interval between iterations.
         {
 
         if (Alive)
             return;;
 
-        interval = std::chrono::milliseconds(i);
+        interval = chrono::milliseconds(i);
         }
 
     unsigned long Interval () const {return interval.count();}     //.count is there to get a number from the interval
 
-    const std::function<void(void)> &Function () const             //
-        {
+    const function<void(void)> &Function () const             //Function returns a function 'funct'
+        {                                                     //so when we write Function()(), it executes funct()
 
         return funct;
         }

@@ -71,41 +71,41 @@ std::string base64_encode (const std::string &s)
                 bits += 8;                                       //Base64 works with octets while extracting information. Will add 8 to bits
                 while (bits >= 0)
                     {
-                        ret.push_back(BASE64_CODES[(val >> bits) & b63]);
-                        bits -= 6;
+                        ret.push_back(BASE64_CODES[(val >> bits) & b63]);// bitwise and operation with decimal 63 value to get last 6 bits of string
+                        bits -= 6;                                      // updating bits value
                     }
             }
         if (bits > -6)
             ret.push_back(BASE64_CODES[((val << 8) >> (bits + 8)) & b63]);
 
-        while (ret.size() % 4)
+        while (ret.size() % 4)                                    // if remaining string is not of exactly 24 bit we'll add '=' padding
             ret.push_back('=');
 
-        return ret;
+        return ret;                                               // returning encoded string
     }
 
-std::string base64_decode(const std::string &s)
+std::string base64_decode(const std::string &s)                   // function definition to decode the string
     {
-        std::string ret;
+        std::string ret;                                          // output decoded string
         std::vector<int> vec(256, -1);
         for (int i = 0; i < 64; i++)
-            vec [BASE64_CODES[i]] = i;
+            vec [BASE64_CODES[i]] = i;                            //storing all keys of keyboard
         int val = 0, bits = -8;
-        for (const auto &c : s)
+        for (const auto &c : s)                                   // c refers to characters of string
             {
-                if (vec[c] == -1) break;
-                val = (val << 6) + vec[c];
-                bits += 6;
+                if (vec[c] == -1) break;                          // if vector found empty
+                val = (val << 6) + vec[c];                        // left shift val by 6 adding coming character to val to get updated val
+                bits += 6;                                        // updating bits since input string is combined in group of 6 bits
 
                 if (bits >= 0)
                     {
 
-                        ret.push_back(char((val >> bits) & 0xFF));
-                        bits -= 8;
+                        ret.push_back(char((val >> bits) & 0xFF)); //right shifting val by 2 bits at a time and bitwise 'and' with decimal 255
+                        bits -= 8;                                // updating bits by 8 so that decoded string combined in group of 8 bits
                     }
             }
 
-        return ret;
+        return ret;                                              // returning decoded string
     }
 }
 #endif
